@@ -22,12 +22,25 @@ function getClient() {
   return client;
 }
 
+function getDefaultPublicBase() {
+  return `https://${config.oss.bucket}.${config.oss.region}.aliyuncs.com`;
+}
+
 function buildPublicUrl(key) {
-  if (config.oss.customDomain) {
+  if (config.oss.useCustomDomain && config.oss.customDomain) {
     const domain = config.oss.customDomain.replace(/\/$/, '');
     return `${domain}/${key}`;
   }
-  return `https://${config.oss.bucket}.${config.oss.region}.aliyuncs.com/${key}`;
+  return `${getDefaultPublicBase()}/${key}`;
+}
+
+/** 将失效的自定义域名 URL 转为 OSS 默认域名（CNAME 未绑定时会 403） */
+function normalizePublicUrl(url) {
+  if (!url || typeof url !== 'string') return url;
+  const brokenHost = 'invento-photo.cn-hangzhou.taihangtop.cn';
+  if (!url.includes(brokenHost)) return url;
+  const path = url.replace(/^https?:\/\/[^/]+/, '');
+  return `${getDefaultPublicBase()}${path}`;
 }
 
 async function saveOss(file) {
@@ -43,4 +56,4 @@ async function deleteOss(key) {
   await oss.delete(key);
 }
 
-module.exports = { saveOss, deleteOss, buildPublicUrl };
+module.exports = { saveOss, deleteOss, buildPublicUrl, normalizePublicUrl, getDefaultPublicBase };

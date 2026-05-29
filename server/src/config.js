@@ -21,7 +21,9 @@ const config = {
     accessKeyId: process.env.OSS_ACCESS_KEY_ID || '',
     accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET || '',
     bucket: process.env.OSS_BUCKET || '',
-    customDomain: process.env.OSS_CUSTOM_DOMAIN || ''
+    customDomain: process.env.OSS_CUSTOM_DOMAIN || '',
+    // 自定义域名需完成 CNAME + HTTPS 绑定后再设为 true，否则图片会 403
+    useCustomDomain: process.env.OSS_USE_CUSTOM_DOMAIN === 'true'
   },
   uploadDir: require('path').join(__dirname, '../uploads')
 };

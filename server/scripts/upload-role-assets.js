@@ -11,6 +11,7 @@ const path = require('path');
 const fs = require('fs');
 const OSS = require('ali-oss');
 const config = require('../src/config');
+const { buildPublicUrl } = require('../src/storage/oss');
 
 const ASSETS_DIR = path.join(__dirname, '../../miniprogram/assets/roles');
 const OSS_PREFIX = 'invento/static/roles';
@@ -30,14 +31,6 @@ function getClient() {
   };
   if (config.oss.endpoint) options.endpoint = config.oss.endpoint;
   return new OSS(options);
-}
-
-function buildPublicUrl(key) {
-  if (config.oss.customDomain) {
-    const domain = config.oss.customDomain.replace(/\/$/, '');
-    return `${domain}/${key}`;
-  }
-  return `https://${config.oss.bucket}.${config.oss.region}.aliyuncs.com/${key}`;
 }
 
 async function main() {
@@ -63,7 +56,7 @@ async function main() {
     console.log(`${role}: ${url}`);
   }
 
-  console.log('\n将以下配置复制到 miniprogram/config.js 的 roleImages：');
+  console.log('\n上传完成。roleImages 请使用 OSS 默认域名（见 miniprogram/config.js）：');
   console.log(JSON.stringify(urls, null, 2));
 }
 

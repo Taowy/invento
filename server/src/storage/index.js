@@ -1,6 +1,7 @@
 const config = require('../config');
 const local = require('./local');
 const oss = require('./oss');
+const { normalizePublicUrl } = oss;
 
 async function saveImage(file) {
   if (config.oss.enabled) {
@@ -21,7 +22,7 @@ async function deleteImage(key) {
 function toAbsoluteUrl(req, url) {
   if (!url) return url;
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    return url;
+    return normalizePublicUrl(url);
   }
   const host = config.ecsPublicIp !== 'YOUR_ECS_PUBLIC_IP'
     ? config.ecsPublicIp

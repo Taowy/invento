@@ -9,6 +9,7 @@
     "init-db": "node scripts/init-db.js",
     "migrate-auth": "node scripts/migrate-auth.js",
     "migrate-roles": "node scripts/migrate-roles.js",
+    "migrate-image-urls": "node scripts/migrate-image-urls.js",
     "compress-role-assets": "node scripts/compress-role-assets.js",
     "upload-role-assets": "node scripts/upload-role-assets.js"
   },

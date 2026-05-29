@@ -25,14 +25,15 @@ invento/                 ← 项目根目录（微信开发者工具打开此目
 | Bucket | `invento-photo` |
 | 地域 | 华东1（杭州）`oss-cn-hangzhou` |
 | 外网 Endpoint | `oss-cn-hangzhou.aliyuncs.com` |
-| 图片访问域名 | `https://invento-photo.cn-hangzhou.taihangtop.cn` |
+| 图片访问域名（当前可用） | `https://invento-photo.oss-cn-hangzhou.aliyuncs.com` |
+| 自定义域名（待 CNAME 绑定） | `https://invento-photo.cn-hangzhou.taihangtop.cn` |
 | ECS 内网上传 | `oss-cn-hangzhou-internal.aliyuncs.com` |
 
-在 `server/.env` 填入 RAM 的 **AccessKey**，部署在 ECS 上时保留 `OSS_ENDPOINT` 内网地址。
+在 `server/.env` 填入 RAM 的 **AccessKey**，部署在 ECS 上时保留 `OSS_ENDPOINT` 内网地址。**不要**启用 `OSS_USE_CUSTOM_DOMAIN`，除非已在 OSS 控制台完成自定义域名的 CNAME 与 HTTPS 证书绑定（未完成时会返回 403，小程序图片无法显示）。
 
 **微信小程序（正式上线后）** 需在公众平台配置 **downloadFile 合法域名**：
 
-`https://invento-photo.cn-hangzhou.taihangtop.cn`
+`https://invento-photo.oss-cn-hangzhou.aliyuncs.com`
 
 开发阶段勾选「不校验合法域名」即可。
 

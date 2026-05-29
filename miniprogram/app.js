@@ -1,10 +1,12 @@
 const appConfig = require('./config');
+const { getThemeColors } = require('./utils/theme');
 
 App({
   globalData: {
     userInfo: null,
     baseUrl: appConfig.baseUrl,
-    theme: 'light'
+    theme: 'light',
+    themeColors: getThemeColors('light')
   },
 
   onLaunch() {
@@ -12,19 +14,17 @@ App({
     if (userInfo) {
       this.globalData.userInfo = userInfo;
     }
-    this.syncTheme();
+    this.refreshThemeColors();
+    wx.onThemeChange(() => this.refreshThemeColors());
   },
 
-  onThemeChange(res) {
-    this.globalData.theme = res.theme;
-  },
-
-  syncTheme() {
+  refreshThemeColors() {
     try {
       const info = wx.getAppBaseInfo ? wx.getAppBaseInfo() : wx.getSystemInfoSync();
-      this.globalData.theme = info.theme || 'light';
+      this.globalData.theme = info.theme === 'dark' ? 'dark' : 'light';
     } catch (e) {
       this.globalData.theme = 'light';
     }
+    this.globalData.themeColors = getThemeColors(this.globalData.theme);
   }
 });

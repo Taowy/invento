@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "团队统计"
+  "navigationBarTitleText": "团队统计",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

@@ -1,9 +1,13 @@
 const { request } = require('../../utils/api');
 const { showError } = require('../../utils/util');
 const { canWriteProducts } = require('../../utils/role');
+const { getThemeColors } = require('../../utils/theme');
 
 Page({
+  behaviors: [require('../../behaviors/theme')],
+
   data: {
+    themeColors: getThemeColors(),
     product: null,
     canEdit: false
   },

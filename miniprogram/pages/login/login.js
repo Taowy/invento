@@ -1,9 +1,13 @@
 const appConfig = require('../../config');
 const { request, wxLogin } = require('../../utils/api');
 const { showError } = require('../../utils/util');
+const { getThemeColors } = require('../../utils/theme');
 
 Page({
+  behaviors: [require('../../behaviors/theme')],
+
   data: {
+    themeColors: getThemeColors(),
     serverUrl: appConfig.baseUrl,
     mode: 'login',
     loading: false,
@@ -62,6 +66,7 @@ Page({
   },
 
   async handleLogin() {
+    if (this.data.loading) return;
     const { username, password } = this.data;
     if (!username || !password) {
       wx.showToast({ title: '请填写用户名和密码', icon: 'none' });
@@ -97,6 +102,7 @@ Page({
   },
 
   async handleRegister() {
+    if (this.data.loading) return;
     const { username, password, confirmPassword, nickName, role, managerCode } = this.data;
 
     if (!username || !password) {
@@ -142,6 +148,7 @@ Page({
   },
 
   async handleForgotPassword() {
+    if (this.data.loading) return;
     const { forgotUsername } = this.data;
     if (!forgotUsername) {
       wx.showToast({ title: '请填写用户名', icon: 'none' });

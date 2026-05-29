@@ -8,99 +8,144 @@
   <block wx:if="{{!checkingSession}}">
     <!-- Hero -->
     <view class="login-hero">
-      <text class="brand">Invento</text>
+      <text class="brand" style="color: {{themeColors.accent}};">Invento</text>
       <text class="text-title login-title">库存管理</text>
       <text class="text-subtitle">简洁、高效、井井有条</text>
     </view>
 
     <!-- Login -->
     <view wx:if="{{mode === 'login'}}">
-      <view class="segment">
-        <view class="segment-item active">登录</view>
-        <view class="segment-item" bindtap="switchMode" data-mode="register">注册</view>
+      <view class="segment" style="background-color: {{themeColors.segmentTrack}}; border-color: {{themeColors.segmentBorder}};">
+        <view
+          class="segment-item active"
+          style="background-color: {{themeColors.segmentActive}}; color: {{themeColors.segmentActiveText}}; border-color: {{themeColors.segmentBorder}};"
+        >登录</view>
+        <view
+          class="segment-item"
+          style="color: {{themeColors.segmentInactiveText}};"
+          bindtap="switchMode"
+          data-mode="register"
+        >注册</view>
       </view>
 
       <view class="card form-card">
         <view class="form-group">
           <text class="form-label">用户名</text>
-          <input class="form-input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+          </view>
         </view>
         <view class="form-group">
           <text class="form-label">密码</text>
-          <input class="form-input" password placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" password placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+          </view>
         </view>
         <view class="forgot-row">
-          <text class="link" bindtap="switchMode" data-mode="forgot">忘记密码？</text>
+          <text class="link" style="color: {{themeColors.accent}};" bindtap="switchMode" data-mode="forgot">忘记密码？</text>
         </view>
-        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleLogin">登录</button>
+        <view
+          class="btn-primary submit-btn {{loading ? 'is-disabled' : ''}}"
+          style="background-color: {{loading ? themeColors.accentDisabled : themeColors.accent}};"
+          bindtap="handleLogin"
+        >
+          <text class="btn-text" style="color: {{themeColors.accentText}};">{{loading ? '登录中...' : '登录'}}</text>
+        </view>
       </view>
     </view>
 
     <!-- Register -->
     <view wx:if="{{mode === 'register'}}">
-      <view class="segment">
-        <view class="segment-item" bindtap="switchMode" data-mode="login">登录</view>
-        <view class="segment-item active">注册</view>
+      <view class="segment" style="background-color: {{themeColors.segmentTrack}}; border-color: {{themeColors.segmentBorder}};">
+        <view
+          class="segment-item"
+          style="color: {{themeColors.segmentInactiveText}};"
+          bindtap="switchMode"
+          data-mode="login"
+        >登录</view>
+        <view
+          class="segment-item active"
+          style="background-color: {{themeColors.segmentActive}}; color: {{themeColors.segmentActiveText}}; border-color: {{themeColors.segmentBorder}};"
+        >注册</view>
       </view>
 
       <view class="card form-card">
         <text class="form-label role-section-label">选择角色</text>
         <view class="role-picker">
           <view
-            class="role-tile {{role === 'service' ? 'selected' : ''}}"
+            class="role-tile"
+            style="background-color: {{role === 'service' ? themeColors.roleTileSelectedBg : themeColors.roleTileBg}}; border-color: {{role === 'service' ? themeColors.roleTileSelectedBorder : themeColors.roleTileBorder}}; border-width: {{role === 'service' ? '3rpx' : '2rpx'}};"
             bindtap="selectRole"
             data-role="service"
           >
             <view class="role-avatar-wrap">
               <image class="role-avatar" src="{{roleImages.service}}" mode="aspectFill" />
             </view>
-            <text class="role-tile-name">客服</text>
+            <text class="role-tile-name" style="color: {{role === 'service' ? themeColors.accent : themeColors.roleName}};">客服</text>
           </view>
           <view
-            class="role-tile {{role === 'recorder' ? 'selected' : ''}}"
+            class="role-tile"
+            style="background-color: {{role === 'recorder' ? themeColors.roleTileSelectedBg : themeColors.roleTileBg}}; border-color: {{role === 'recorder' ? themeColors.roleTileSelectedBorder : themeColors.roleTileBorder}}; border-width: {{role === 'recorder' ? '3rpx' : '2rpx'}};"
             bindtap="selectRole"
             data-role="recorder"
           >
             <view class="role-avatar-wrap">
               <image class="role-avatar" src="{{roleImages.recorder}}" mode="aspectFill" />
             </view>
-            <text class="role-tile-name">录入员</text>
+            <text class="role-tile-name" style="color: {{role === 'recorder' ? themeColors.accent : themeColors.roleName}};">录入员</text>
           </view>
           <view
-            class="role-tile {{role === 'manager' ? 'selected' : ''}}"
+            class="role-tile"
+            style="background-color: {{role === 'manager' ? themeColors.roleTileSelectedBg : themeColors.roleTileBg}}; border-color: {{role === 'manager' ? themeColors.roleTileSelectedBorder : themeColors.roleTileBorder}}; border-width: {{role === 'manager' ? '3rpx' : '2rpx'}};"
             bindtap="selectRole"
             data-role="manager"
           >
             <view class="role-avatar-wrap">
               <image class="role-avatar" src="{{roleImages.manager}}" mode="aspectFill" />
             </view>
-            <text class="role-tile-name">管理者</text>
+            <text class="role-tile-name" style="color: {{role === 'manager' ? themeColors.accent : themeColors.roleName}};">管理者</text>
           </view>
         </view>
 
         <view class="form-group">
           <text class="form-label">用户名</text>
-          <input class="form-input" placeholder="3-32 位字母、数字或下划线" value="{{username}}" bindinput="onUsernameInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" placeholder="3-32 位字母、数字或下划线" value="{{username}}" bindinput="onUsernameInput" />
+          </view>
         </view>
         <view class="form-group">
           <text class="form-label">密码</text>
-          <input class="form-input" password placeholder="至少 6 位" value="{{password}}" bindinput="onPasswordInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" password placeholder="至少 6 位" value="{{password}}" bindinput="onPasswordInput" />
+          </view>
         </view>
         <view class="form-group">
           <text class="form-label">确认密码</text>
-          <input class="form-input" password placeholder="再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" password placeholder="再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+          </view>
         </view>
         <view class="form-group">
           <text class="form-label">显示昵称（可选）</text>
-          <input class="form-input" placeholder="默认同用户名" value="{{nickName}}" bindinput="onNickNameInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" placeholder="默认同用户名" value="{{nickName}}" bindinput="onNickNameInput" />
+          </view>
         </view>
 
         <view class="form-group" wx:if="{{role === 'manager'}}">
           <text class="form-label">管理者验证码</text>
-          <input class="form-input" password placeholder="向管理员索取" value="{{managerCode}}" bindinput="onManagerCodeInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" password placeholder="向管理员索取" value="{{managerCode}}" bindinput="onManagerCodeInput" />
+          </view>
         </view>
 
-        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleRegister">注册并登录</button>
+        <view
+          class="btn-primary submit-btn {{loading ? 'is-disabled' : ''}}"
+          style="background-color: {{loading ? themeColors.accentDisabled : themeColors.accent}};"
+          bindtap="handleRegister"
+        >
+          <text class="btn-text" style="color: {{themeColors.accentText}};">{{loading ? '注册中...' : '注册并登录'}}</text>
+        </view>
       </view>
     </view>
 
@@ -111,10 +156,25 @@
         <text class="text-subtitle forgot-desc">提交申请后，管理者将收到通知并为您重置密码。</text>
         <view class="form-group">
           <text class="form-label">用户名</text>
-          <input class="form-input" placeholder="您的登录用户名" value="{{forgotUsername}}" bindinput="onForgotUsernameInput" />
+          <view class="input-field">
+            <input class="form-input" placeholder-class="input-placeholder" placeholder="您的登录用户名" value="{{forgotUsername}}" bindinput="onForgotUsernameInput" />
+          </view>
         </view>
-        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleForgotPassword">提交申请</button>
-        <button class="btn-secondary back-btn" bindtap="switchMode" data-mode="login">返回登录</button>
+        <view
+          class="btn-primary submit-btn {{loading ? 'is-disabled' : ''}}"
+          style="background-color: {{loading ? themeColors.accentDisabled : themeColors.accent}};"
+          bindtap="handleForgotPassword"
+        >
+          <text class="btn-text" style="color: {{themeColors.accentText}};">{{loading ? '提交中...' : '提交申请'}}</text>
+        </view>
+        <view
+          class="btn-secondary back-btn"
+          style="border-color: {{themeColors.accent}};"
+          bindtap="switchMode"
+          data-mode="login"
+        >
+          <text class="btn-text" style="color: {{themeColors.accent}};">返回登录</text>
+        </view>
       </view>
     </view>
 

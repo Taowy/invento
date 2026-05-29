@@ -12,7 +12,7 @@
   font-size: 28rpx;
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: #0071e3;
+  color: @accent;
   margin-bottom: 16rpx;
 }
 
@@ -30,6 +30,7 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   margin-bottom: 12rpx;
+  color: @textPrimary;
 }
 
 .forgot-desc {
@@ -51,7 +52,6 @@
   margin-top: 20rpx;
 }
 
-/* Role picker — 三列方形 MBTI 风格 */
 .role-section-label {
   margin-bottom: 20rpx;
 }
@@ -69,15 +69,9 @@
   flex-direction: column;
   align-items: center;
   padding: 12rpx 10rpx 16rpx;
-  background: #f5f5f7;
   border-radius: 16rpx;
-  border: 3rpx solid transparent;
+  border-style: solid;
   box-sizing: border-box;
-}
-
-.role-tile.selected {
-  background: rgba(0, 113, 227, 0.06);
-  border-color: #0071e3;
 }
 
 .role-avatar-wrap {
@@ -87,7 +81,8 @@
   position: relative;
   border-radius: 12rpx;
   overflow: hidden;
-  background: #ffffff;
+  background-color: @bgSecondary;
+  border: 1rpx solid @borderSubtle;
 }
 
 .role-avatar {
@@ -102,12 +97,7 @@
   margin-top: 12rpx;
   font-size: 24rpx;
   font-weight: 600;
-  color: #1d1d1f;
   text-align: center;
-}
-
-.role-tile.selected .role-tile-name {
-  color: #0071e3;
 }
 
 .state-center {
@@ -121,8 +111,8 @@
 .spinner {
   width: 48rpx;
   height: 48rpx;
-  border: 4rpx solid #e8e8ed;
-  border-top-color: #0071e3;
+  border: 4rpx solid @spinnerTrack;
+  border-top-color: @accent;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   margin-bottom: 24rpx;
@@ -134,7 +124,7 @@
 
 .state-text {
   font-size: 28rpx;
-  color: #86868b;
+  color: @textSecondary;
 }
 
 .dev-hint {
@@ -145,7 +135,7 @@
 
 .dev-hint-text {
   font-size: 22rpx;
-  color: #c7c7cc;
+  color: @textTertiary;
   word-break: break-all;
 }
 

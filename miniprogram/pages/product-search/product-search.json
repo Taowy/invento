@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "查询"
+  "navigationBarTitleText": "查询",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

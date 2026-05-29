@@ -31,6 +31,13 @@
       </view>
     </view>
 
-    <button wx:if="{{canEdit}}" class="btn-primary edit-btn" bindtap="goEdit">修改货物</button>
+    <view
+      wx:if="{{canEdit}}"
+      class="btn-primary edit-btn"
+      style="background-color: {{themeColors.accent}};"
+      bindtap="goEdit"
+    >
+      <text class="btn-text" style="color: {{themeColors.accentText}};">修改货物</text>
+    </view>
   </view>
 </view>

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "Invento"
+  "navigationBarTitleText": "Invento",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

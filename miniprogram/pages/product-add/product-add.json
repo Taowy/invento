@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "录入"
+  "navigationBarTitleText": "录入",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

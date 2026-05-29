@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "详情"
+  "navigationBarTitleText": "详情",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

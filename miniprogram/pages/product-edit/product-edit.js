@@ -1,8 +1,12 @@
 const { request, uploadImage } = require('../../utils/api');
 const { showError } = require('../../utils/util');
+const { getThemeColors } = require('../../utils/theme');
 
 Page({
+  behaviors: [require('../../behaviors/theme')],
+
   data: {
+    themeColors: getThemeColors(),
     productId: null,
     images: [],
     imageKeys: [],
@@ -97,6 +101,7 @@ Page({
   },
 
   async submit() {
+    if (this.data.submitting) return;
     const { productId, name, price, images, imageKeys, spec, stock, remark } = this.data;
 
     if (!name.trim()) {

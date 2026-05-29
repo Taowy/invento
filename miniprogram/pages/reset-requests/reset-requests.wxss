@@ -11,16 +11,16 @@
 }
 
 .request-card {
-  background: #ffffff;
+  background-color: @bgSecondary;
   border-radius: 20rpx;
   padding: 32rpx 36rpx;
   margin-bottom: 16rpx;
-  border: 2rpx solid rgba(0, 0, 0, 0.06);
+  border: 2rpx solid @cardBorder;
 }
 
 .request-card.selected {
-  border-color: #0071e3;
-  background: rgba(0, 113, 227, 0.04);
+  border-color: @accent;
+  background: @accentSurface;
 }
 
 .request-top {
@@ -34,19 +34,19 @@
   display: block;
   font-size: 30rpx;
   font-weight: 600;
-  color: #1d1d1f;
+  color: @textPrimary;
   margin-bottom: 4rpx;
 }
 
 .request-user {
   display: block;
   font-size: 24rpx;
-  color: #86868b;
+  color: @textSecondary;
 }
 
 .request-time {
   font-size: 24rpx;
-  color: #86868b;
+  color: @textSecondary;
 }
 
 .form-card {
@@ -59,6 +59,7 @@
   font-size: 34rpx;
   font-weight: 600;
   margin-bottom: 32rpx;
+  color: @textPrimary;
 }
 
 .submit-btn {
@@ -75,12 +76,12 @@
   display: block;
   font-size: 32rpx;
   font-weight: 600;
-  color: #1d1d1f;
+  color: @textPrimary;
   margin-bottom: 12rpx;
 }
 
 .empty-desc {
   display: block;
   font-size: 26rpx;
-  color: #86868b;
+  color: @textSecondary;
 }

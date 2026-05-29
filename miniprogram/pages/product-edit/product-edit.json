@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "编辑"
+  "navigationBarTitleText": "编辑",
+  "backgroundColor": "@pageBgColor",
+  "navigationBarBackgroundColor": "@navBgColor"
 }

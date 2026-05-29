@@ -1,8 +1,12 @@
 const { request } = require('../../utils/api');
 const { showError, formatTime } = require('../../utils/util');
+const { getThemeColors } = require('../../utils/theme');
 
 Page({
+  behaviors: [require('../../behaviors/theme')],
+
   data: {
+    themeColors: getThemeColors(),
     list: [],
     loading: false,
     selectedId: null,
@@ -44,6 +48,7 @@ Page({
   onConfirmPasswordInput(e) { this.setData({ confirmPassword: e.detail.value }); },
 
   async submitReset() {
+    if (this.data.submitting) return;
     const { selectedId, newPassword, confirmPassword } = this.data;
     if (!selectedId) {
       wx.showToast({ title: '请选择申请', icon: 'none' });

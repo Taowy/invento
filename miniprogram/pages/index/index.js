@@ -1,9 +1,11 @@
+const appConfig = require('../../config');
 const { getRoleLabel, canWriteProducts, isManager } = require('../../utils/role');
 
 Page({
   data: {
     userInfo: null,
     roleLabel: '',
+    roleImage: '',
     canWrite: false,
     isManager: false,
     resetCount: 0
@@ -15,11 +17,13 @@ Page({
       wx.reLaunch({ url: '/pages/login/login' });
       return;
     }
+    const role = userInfo.role || 'service';
     this.setData({
       userInfo,
-      roleLabel: getRoleLabel(userInfo.role),
-      canWrite: canWriteProducts(userInfo.role),
-      isManager: isManager(userInfo.role)
+      roleLabel: getRoleLabel(role),
+      roleImage: appConfig.roleImages[role] || appConfig.roleImages.service,
+      canWrite: canWriteProducts(role),
+      isManager: isManager(role)
     });
     if (isManager(userInfo.role)) {
       this.loadResetCount();

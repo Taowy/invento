@@ -27,12 +27,22 @@
     <text class="form-heading">设置新密码</text>
     <view class="form-group">
       <text class="form-label">新密码</text>
-      <input class="form-input" password placeholder="至少 6 位" value="{{newPassword}}" bindinput="onNewPasswordInput" />
+      <view class="input-field">
+        <input class="form-input" placeholder-class="input-placeholder" password placeholder="至少 6 位" value="{{newPassword}}" bindinput="onNewPasswordInput" />
+      </view>
     </view>
     <view class="form-group">
       <text class="form-label">确认密码</text>
-      <input class="form-input" password placeholder="再次输入" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+      <view class="input-field">
+        <input class="form-input" placeholder-class="input-placeholder" password placeholder="再次输入" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+      </view>
     </view>
-    <button class="btn-primary submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitReset">确认重置</button>
+    <view
+      class="btn-primary submit-btn {{submitting ? 'is-disabled' : ''}}"
+      style="background-color: {{submitting ? themeColors.accentDisabled : themeColors.accent}};"
+      bindtap="submitReset"
+    >
+      <text class="btn-text" style="color: {{themeColors.accentText}};">{{submitting ? '提交中...' : '确认重置'}}</text>
+    </view>
   </view>
 </view>

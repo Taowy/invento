@@ -1,10 +1,15 @@
 <view class="page index-page">
   <!-- Hero -->
-  <view class="hero">
-    <text class="text-eyebrow">Invento</text>
-    <text class="text-title">你好，{{userInfo.nickName}}</text>
-    <view class="hero-meta">
-      <view class="role-pill {{userInfo.role}}">{{roleLabel}}</view>
+  <view class="hero hero-row">
+    <view class="hero-text">
+      <text class="text-eyebrow">Invento</text>
+      <text class="text-title hero-greeting">你好，{{userInfo.nickName}}</text>
+      <view class="hero-meta">
+        <view class="role-pill {{userInfo.role}}">{{roleLabel}}</view>
+      </view>
+    </view>
+    <view class="hero-avatar">
+      <image class="hero-role-img" src="{{roleImage}}" mode="aspectFill" />
     </view>
   </view>
 
@@ -76,6 +81,8 @@
   </block>
 
   <view class="footer-actions">
-    <button class="btn-ghost logout-btn" bindtap="logout">退出登录</button>
+    <view class="btn-ghost logout-btn" bindtap="logout">
+      <text class="btn-text">退出登录</text>
+    </view>
   </view>
 </view>

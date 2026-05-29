@@ -9,7 +9,7 @@
     <input
       class="search-input"
       placeholder="搜索货物名称..."
-      placeholder-class="search-placeholder"
+      placeholder-class="input-placeholder"
       value="{{keyword}}"
       bindinput="onKeywordInput"
       confirm-type="search"

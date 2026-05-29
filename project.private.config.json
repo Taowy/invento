@@ -1,0 +1,7 @@
+{
+  "description": "本地私有配置，请勿提交敏感信息",
+  "projectname": "Invento",
+  "setting": {
+    "compileHotReLoad": true
+  }
+}

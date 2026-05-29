@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="search-bar card">
+    <input
+      class="search-input"
+      placeholder="输入货物名称搜索..."
+      value="{{keyword}}"
+      bindinput="onKeywordInput"
+      confirm-type="search"
+      bindconfirm="doSearch"
+    />
+    <button class="search-btn btn-primary" size="mini" bindtap="doSearch">搜索</button>
+  </view>
+
+  <view class="result-count" wx:if="{{searched}}">共 {{list.length}} 条结果</view>
+
+  <view wx:if="{{list.length === 0 && searched}}" class="empty-tip">Invento 中还没有这类货物</view>
+
+  <view class="product-list">
+    <view class="product-card card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <image wx:if="{{item.images[0]}}" class="thumb" src="{{item.images[0]}}" mode="aspectFill" />
+      <view wx:else class="thumb thumb-empty">无图</view>
+      <view class="info">
+        <view class="name">{{item.name}}</view>
+        <view class="price">¥ {{item.price}}</view>
+        <view class="meta" wx:if="{{item.spec}}">{{item.spec}}</view>
+        <view class="meta">库存：{{item.stock}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header card">
+    <view class="greeting">你好，{{userInfo.nickName}}</view>
+    <view class="role-tag {{userInfo.role}}">
+      {{userInfo.role === 'manager' ? '管理者' : '客服'}}
+    </view>
+  </view>
+
+  <view class="menu card" wx:if="{{userInfo.role === 'manager'}}">
+    <view class="menu-title">管理者功能</view>
+    <view class="menu-item" bindtap="goAdd">
+      <view class="menu-icon">➕</view>
+      <view class="menu-content">
+        <view class="menu-name">录入货物</view>
+        <view class="menu-desc">上传图片、填写名称、价格等信息</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="menu-item" bindtap="goSearch">
+      <view class="menu-icon">🔍</view>
+      <view class="menu-content">
+        <view class="menu-name">查询货物</view>
+        <view class="menu-desc">搜索和浏览 Invento 库存</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <view class="menu card" wx:else>
+    <view class="menu-title">客服功能</view>
+    <view class="menu-item" bindtap="goSearch">
+      <view class="menu-icon">🔍</view>
+      <view class="menu-content">
+        <view class="menu-name">搜索货物</view>
+        <view class="menu-desc">按名称快速查找价格和详情</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+
+  <button class="btn-secondary logout-btn" bindtap="logout">退出登录</button>
+</view>

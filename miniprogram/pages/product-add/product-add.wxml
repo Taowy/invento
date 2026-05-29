@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="card">
+    <text class="form-label">货物图片（最多 3 张）</text>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}" />
+        <view class="remove-btn" bindtap="removeImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="image-add" wx:if="{{images.length < 3}}" bindtap="chooseImage">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+
+    <text class="form-label">货物名称 *</text>
+    <input class="form-input" placeholder="例如：A型螺丝 M6" value="{{name}}" bindinput="onNameInput" />
+
+    <text class="form-label">价格（元）*</text>
+    <input class="form-input" type="digit" placeholder="例如：12.50" value="{{price}}" bindinput="onPriceInput" />
+
+    <text class="form-label">规格 / 型号</text>
+    <input class="form-input" placeholder="例如：M6×20mm 不锈钢" value="{{spec}}" bindinput="onSpecInput" />
+
+    <text class="form-label">库存数量</text>
+    <input class="form-input" type="number" placeholder="例如：100" value="{{stock}}" bindinput="onStockInput" />
+
+    <text class="form-label">备注说明</text>
+    <textarea class="form-textarea" placeholder="其他补充信息..." value="{{remark}}" bindinput="onRemarkInput" maxlength="500" />
+
+    <button class="btn-primary submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submit">
+      保存到 Invento
+    </button>
+  </view>
+</view>

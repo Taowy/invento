@@ -1,0 +1,72 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.greeting {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.role-tag {
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+}
+
+.role-tag.manager {
+  background: #fff7e6;
+  color: #d48806;
+}
+
+.role-tag.service {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+.menu-title {
+  font-size: 28rpx;
+  color: #888;
+  margin-bottom: 8rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 24rpx;
+}
+
+.menu-content {
+  flex: 1;
+}
+
+.menu-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 6rpx;
+}
+
+.menu-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.arrow {
+  font-size: 40rpx;
+  color: #ccc;
+}
+
+.logout-btn {
+  margin-top: 24rpx;
+}

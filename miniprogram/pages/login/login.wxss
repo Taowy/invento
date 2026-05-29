@@ -1,0 +1,108 @@
+.login-page {
+  min-height: 100vh;
+}
+
+.hero {
+  text-align: center;
+  padding: 48rpx 32rpx;
+}
+
+.logo {
+  display: inline-block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1677ff;
+  background: linear-gradient(135deg, #e6f4ff 0%, #f6ffed 100%);
+  padding: 24rpx 40rpx;
+  border-radius: 24rpx;
+  margin-bottom: 16rpx;
+  letter-spacing: 2rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 26rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+}
+
+.hint {
+  color: #888;
+  font-size: 24rpx;
+  line-height: 1.6;
+  margin-bottom: 24rpx;
+}
+
+.register-btn,
+.enter-btn {
+  margin-top: 32rpx;
+}
+
+.role-group {
+  display: block;
+}
+
+.role-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx;
+  background: #f5f6f8;
+  border-radius: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.role-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 6rpx;
+}
+
+.role-desc {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.welcome {
+  font-size: 34rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.role-badge.manager {
+  background: #fff7e6;
+  color: #d48806;
+}
+
+.role-badge.service {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+.server-info .hint {
+  color: #666;
+  font-size: 24rpx;
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+.server-info .warn {
+  color: #d48806;
+}

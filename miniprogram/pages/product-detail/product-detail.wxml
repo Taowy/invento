@@ -1,0 +1,30 @@
+<view class="container" wx:if="{{product}}">
+  <swiper class="banner" indicator-dots autoplay circular wx:if="{{product.images.length}}">
+    <swiper-item wx:for="{{product.images}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}" />
+    </swiper-item>
+  </swiper>
+  <view class="banner banner-empty" wx:else>暂无图片</view>
+
+  <view class="card detail-card">
+    <view class="name">{{product.name}}</view>
+    <view class="price">¥ {{product.price}}</view>
+
+    <view class="row" wx:if="{{product.spec}}">
+      <text class="label">规格</text>
+      <text class="value">{{product.spec}}</text>
+    </view>
+    <view class="row">
+      <text class="label">库存</text>
+      <text class="value">{{product.stock}}</text>
+    </view>
+    <view class="row" wx:if="{{product.remark}}">
+      <text class="label">备注</text>
+      <text class="value">{{product.remark}}</text>
+    </view>
+    <view class="row">
+      <text class="label">录入人</text>
+      <text class="value">{{product.creatorName || '未知'}}</text>
+    </view>
+  </view>
+</view>

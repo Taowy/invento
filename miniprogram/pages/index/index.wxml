@@ -39,4 +39,10 @@
   </view>
 
   <button class="btn-secondary logout-btn" bindtap="logout">退出登录</button>
+
+  <!-- 管理者：待处理密码重置气泡 -->
+  <view class="reset-bubble" wx:if="{{userInfo.role === 'manager' && resetCount > 0}}" bindtap="goResetRequests">
+    <view class="reset-bubble-badge">{{resetCount > 99 ? '99+' : resetCount}}</view>
+    <view class="reset-bubble-text">密码重置</view>
+  </view>
 </view>

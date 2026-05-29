@@ -4,7 +4,8 @@
     "pages/index/index",
     "pages/product-add/product-add",
     "pages/product-search/product-search",
-    "pages/product-detail/product-detail"
+    "pages/product-detail/product-detail",
+    "pages/reset-requests/reset-requests"
   ],
   "window": {
     "backgroundTextStyle": "light",

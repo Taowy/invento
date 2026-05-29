@@ -1,7 +1,23 @@
 {
   "description": "本地私有配置，请勿提交敏感信息",
-  "projectname": "Invento",
+  "projectname": "invento",
   "setting": {
-    "compileHotReLoad": true
-  }
+    "compileHotReLoad": true,
+    "urlCheck": false,
+    "coverView": false,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": false,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": false
+  },
+  "libVersion": "3.16.1",
+  "condition": {}
 }

@@ -1,0 +1,71 @@
+.intro-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.intro-desc {
+  font-size: 24rpx;
+  color: #888;
+  line-height: 1.6;
+}
+
+.request-item {
+  border: 2rpx solid transparent;
+}
+
+.request-item.selected {
+  border-color: #1677ff;
+  background: #f0f7ff;
+}
+
+.request-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.request-name {
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.role-tag {
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+
+.role-tag.manager {
+  background: #fff7e6;
+  color: #d48806;
+}
+
+.role-tag.service {
+  background: #e6f4ff;
+  color: #1677ff;
+}
+
+.request-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.form-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+}
+
+.submit-btn {
+  margin-top: 32rpx;
+}
+
+.form-label {
+  margin-top: 16rpx;
+}
+
+.form-label:first-of-type {
+  margin-top: 0;
+}

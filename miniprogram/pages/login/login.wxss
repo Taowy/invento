@@ -33,7 +33,7 @@
 .section-title {
   font-size: 32rpx;
   font-weight: 600;
-  margin-bottom: 24rpx;
+  margin-bottom: 16rpx;
 }
 
 .hint {
@@ -43,9 +43,49 @@
   margin-bottom: 24rpx;
 }
 
-.register-btn,
-.enter-btn {
+.server-info .hint {
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.server-info .warn {
+  color: #d48806;
+}
+
+.tab-row {
+  display: flex;
+  margin-bottom: 32rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  color: #888;
+}
+
+.tab.active {
+  color: #1677ff;
+  font-weight: 600;
+  border-bottom: 4rpx solid #1677ff;
+  margin-bottom: -2rpx;
+}
+
+.forgot-link {
+  text-align: right;
+  color: #1677ff;
+  font-size: 24rpx;
+  margin: 16rpx 0 8rpx;
+}
+
+.submit-btn {
   margin-top: 32rpx;
+}
+
+.back-btn {
+  margin-top: 16rpx;
 }
 
 .role-group {
@@ -72,37 +112,20 @@
   color: #888;
 }
 
-.welcome {
-  font-size: 34rpx;
-  font-weight: 600;
-  margin-bottom: 16rpx;
+.loading-card {
+  text-align: center;
+  padding: 80rpx 32rpx;
 }
 
-.role-badge {
-  display: inline-block;
-  padding: 8rpx 20rpx;
-  border-radius: 999rpx;
-  font-size: 24rpx;
-  margin-bottom: 24rpx;
+.loading-text {
+  color: #888;
+  font-size: 28rpx;
 }
 
-.role-badge.manager {
-  background: #fff7e6;
-  color: #d48806;
+.form-label {
+  margin-top: 16rpx;
 }
 
-.role-badge.service {
-  background: #e6f4ff;
-  color: #1677ff;
-}
-
-.server-info .hint {
-  color: #666;
-  font-size: 24rpx;
-  line-height: 1.6;
-  margin-bottom: 8rpx;
-}
-
-.server-info .warn {
-  color: #d48806;
+.form-label:first-of-type {
+  margin-top: 0;
 }

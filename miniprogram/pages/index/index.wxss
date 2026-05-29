@@ -70,3 +70,35 @@
 .logout-btn {
   margin-top: 24rpx;
 }
+
+.reset-bubble {
+  position: fixed;
+  right: 32rpx;
+  bottom: 120rpx;
+  background: #1677ff;
+  color: #fff;
+  border-radius: 999rpx;
+  padding: 20rpx 28rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 24rpx rgba(22, 119, 255, 0.35);
+  z-index: 100;
+}
+
+.reset-bubble-badge {
+  min-width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  background: #ff4d4f;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 0 8rpx;
+  margin-right: 12rpx;
+}
+
+.reset-bubble-text {
+  font-size: 26rpx;
+  font-weight: 500;
+}

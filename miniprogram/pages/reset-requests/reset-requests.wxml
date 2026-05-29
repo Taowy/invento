@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="card intro">
+    <view class="intro-title">密码重置申请</view>
+    <view class="intro-desc">用户提交忘记密码申请后会出现在此列表，请选择用户并设置新密码。</view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{!loading && list.length === 0}}">暂无待处理的申请</view>
+
+  <view class="card request-item {{selectedId === item.id ? 'selected' : ''}}"
+    wx:for="{{list}}" wx:key="id"
+    bindtap="selectRequest" data-id="{{item.id}}">
+    <view class="request-header">
+      <view class="request-name">{{item.nickName}}（{{item.username}}）</view>
+      <view class="role-tag {{item.role}}">{{item.role === 'manager' ? '管理者' : '客服'}}</view>
+    </view>
+    <view class="request-time">申请时间：{{item.requestedAtText}}</view>
+  </view>
+
+  <view class="card reset-form" wx:if="{{selectedId}}">
+    <view class="form-title">设置新密码</view>
+    <text class="form-label">新密码</text>
+    <input class="form-input" password placeholder="至少 6 位" value="{{newPassword}}" bindinput="onNewPasswordInput" />
+    <text class="form-label">确认新密码</text>
+    <input class="form-input" password placeholder="再次输入" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+    <button class="btn-primary submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitReset">
+      确认重置密码
+    </button>
+  </view>
+</view>

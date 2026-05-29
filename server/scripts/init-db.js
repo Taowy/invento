@@ -17,10 +17,28 @@ async function main() {
   await conn.query(`
     CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      openid VARCHAR(64) NOT NULL UNIQUE,
+      username VARCHAR(64) NOT NULL UNIQUE,
+      password_hash VARCHAR(255) NOT NULL,
       nick_name VARCHAR(64) NOT NULL,
+      openid VARCHAR(64) DEFAULT NULL,
       role ENUM('manager', 'service') NOT NULL DEFAULT 'service',
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      INDEX idx_openid (openid)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `);
+
+  await conn.query(`
+    CREATE TABLE IF NOT EXISTS password_reset_requests (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      status ENUM('pending', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
+      requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      resolved_at TIMESTAMP NULL,
+      resolved_by INT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      FOREIGN KEY (resolved_by) REFERENCES users(id) ON DELETE SET NULL,
+      INDEX idx_status (status),
+      INDEX idx_user_status (user_id, status)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `);
 

@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="card intro">
+    <view class="intro-title">团队操作统计</view>
+    <view class="intro-desc">近 30 天内，客服与录入员的查询、录入、修改次数。</view>
+  </view>
+
+  <view class="empty-tip" wx:if="{{!loading && list.length === 0}}">暂无客服或录入员数据</view>
+
+  <view class="card stat-item" wx:for="{{list}}" wx:key="id">
+    <view class="stat-header">
+      <view class="stat-name">{{item.nickName}}（{{item.username}}）</view>
+      <view class="role-tag {{item.role}}">{{item.roleLabel}}</view>
+    </view>
+    <view class="stat-grid">
+      <view class="stat-cell">
+        <view class="stat-num">{{item.queryCount}}</view>
+        <view class="stat-label">查询</view>
+      </view>
+      <view class="stat-cell">
+        <view class="stat-num">{{item.createCount}}</view>
+        <view class="stat-label">录入</view>
+      </view>
+      <view class="stat-cell">
+        <view class="stat-num">{{item.updateCount}}</view>
+        <view class="stat-label">修改</view>
+      </view>
+    </view>
+  </view>
+</view>

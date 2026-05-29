@@ -27,4 +27,6 @@
       <text class="value">{{product.creatorName || '未知'}}</text>
     </view>
   </view>
+
+  <button wx:if="{{canEdit}}" class="btn-primary edit-btn" bindtap="goEdit">修改货物</button>
 </view>

@@ -12,6 +12,7 @@
   </view>
 
   <view class="result-count" wx:if="{{searched}}">共 {{list.length}} 条结果</view>
+  <view class="edit-hint" wx:if="{{editMode && searched}}">点击货物进入修改页面</view>
 
   <view wx:if="{{list.length === 0 && searched}}" class="empty-tip">Invento 中还没有这类货物</view>
 

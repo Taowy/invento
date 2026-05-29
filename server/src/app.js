@@ -26,6 +26,7 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/stats', require('./routes/stats'));
 
 app.use((err, req, res, next) => {
   console.error(err);

@@ -1,13 +1,17 @@
 const { request } = require('../../utils/api');
 const { showError } = require('../../utils/util');
+const { canWriteProducts } = require('../../utils/role');
 
 Page({
   data: {
-    product: null
+    product: null,
+    canEdit: false
   },
 
   onLoad(options) {
     if (options.id) {
+      const userInfo = wx.getStorageSync('userInfo');
+      this.setData({ canEdit: canWriteProducts(userInfo && userInfo.role) });
       this.loadDetail(options.id);
     }
   },
@@ -26,6 +30,11 @@ Page({
     } finally {
       wx.hideLoading();
     }
+  },
+
+  goEdit() {
+    if (!this.data.product) return;
+    wx.navigateTo({ url: `/pages/product-edit/product-edit?id=${this.data.product.id}` });
   },
 
   previewImage(e) {

@@ -72,7 +72,7 @@ router.post('/register', async (req, res) => {
     if (userErr || passErr) {
       return res.status(400).json({ success: false, message: userErr || passErr });
     }
-    if (!role || !['manager', 'service'].includes(role)) {
+    if (!role || !['manager', 'service', 'recorder'].includes(role)) {
       return res.status(400).json({ success: false, message: '请选择角色' });
     }
     if (role === 'manager' && managerCode !== config.managerCode) {

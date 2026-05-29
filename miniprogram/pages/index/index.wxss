@@ -20,6 +20,11 @@
   color: #d48806;
 }
 
+.role-tag.recorder {
+  background: #f6ffed;
+  color: #389e0d;
+}
+
 .role-tag.service {
   background: #e6f4ff;
   color: #1677ff;

@@ -7,7 +7,8 @@
     "start": "node src/app.js",
     "dev": "node --watch src/app.js",
     "init-db": "node scripts/init-db.js",
-    "migrate-auth": "node scripts/migrate-auth.js"
+    "migrate-auth": "node scripts/migrate-auth.js",
+    "migrate-roles": "node scripts/migrate-roles.js"
   },
   "dependencies": {
     "ali-oss": "^6.21.0",

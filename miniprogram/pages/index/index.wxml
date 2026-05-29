@@ -1,13 +1,12 @@
 <view class="container">
   <view class="header card">
     <view class="greeting">你好，{{userInfo.nickName}}</view>
-    <view class="role-tag {{userInfo.role}}">
-      {{userInfo.role === 'manager' ? '管理者' : '客服'}}
-    </view>
+    <view class="role-tag {{userInfo.role}}">{{roleLabel}}</view>
   </view>
 
-  <view class="menu card" wx:if="{{userInfo.role === 'manager'}}">
-    <view class="menu-title">管理者功能</view>
+  <!-- 录入员 / 管理者：录入、查询、修改 -->
+  <view class="menu card" wx:if="{{canWrite}}">
+    <view class="menu-title">{{isManager ? '管理者功能' : '录入员功能'}}</view>
     <view class="menu-item" bindtap="goAdd">
       <view class="menu-icon">➕</view>
       <view class="menu-content">
@@ -24,8 +23,25 @@
       </view>
       <view class="arrow">›</view>
     </view>
+    <view class="menu-item" bindtap="goEdit">
+      <view class="menu-icon">✏️</view>
+      <view class="menu-content">
+        <view class="menu-name">修改货物</view>
+        <view class="menu-desc">搜索并编辑已有货物信息</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+    <view class="menu-item" wx:if="{{isManager}}" bindtap="goTeamStats">
+      <view class="menu-icon">📊</view>
+      <view class="menu-content">
+        <view class="menu-name">团队统计</view>
+        <view class="menu-desc">查看客服与录入员近 30 天操作次数</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
   </view>
 
+  <!-- 客服：仅查询 -->
   <view class="menu card" wx:else>
     <view class="menu-title">客服功能</view>
     <view class="menu-item" bindtap="goSearch">
@@ -40,8 +56,7 @@
 
   <button class="btn-secondary logout-btn" bindtap="logout">退出登录</button>
 
-  <!-- 管理者：待处理密码重置气泡 -->
-  <view class="reset-bubble" wx:if="{{userInfo.role === 'manager' && resetCount > 0}}" bindtap="goResetRequests">
+  <view class="reset-bubble" wx:if="{{isManager && resetCount > 0}}" bindtap="goResetRequests">
     <view class="reset-bubble-badge">{{resetCount > 99 ? '99+' : resetCount}}</view>
     <view class="reset-bubble-text">密码重置</view>
   </view>

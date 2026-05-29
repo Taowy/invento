@@ -25,6 +25,12 @@
   font-size: 24rpx;
 }
 
+.edit-hint {
+  padding: 0 8rpx 16rpx;
+  color: #1677ff;
+  font-size: 24rpx;
+}
+
 .product-card {
   display: flex;
   gap: 24rpx;

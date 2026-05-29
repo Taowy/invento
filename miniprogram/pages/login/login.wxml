@@ -59,14 +59,21 @@
         <radio value="service" checked="{{role === 'service'}}" color="#1677ff" />
         <view>
           <view class="role-name">客服</view>
-          <view class="role-desc">查询货物信息、搜索价格</view>
+          <view class="role-desc">仅查询货物信息</view>
+        </view>
+      </label>
+      <label class="role-item">
+        <radio value="recorder" checked="{{role === 'recorder'}}" color="#1677ff" />
+        <view>
+          <view class="role-name">录入员</view>
+          <view class="role-desc">查询、录入、修改货物</view>
         </view>
       </label>
       <label class="role-item">
         <radio value="manager" checked="{{role === 'manager'}}" color="#1677ff" />
         <view>
           <view class="role-name">管理者</view>
-          <view class="role-desc">录入货物、处理密码重置申请</view>
+          <view class="role-desc">录入员权限 + 密码重置 + 团队统计</view>
         </view>
       </label>
     </radio-group>

@@ -5,7 +5,9 @@
     "pages/product-add/product-add",
     "pages/product-search/product-search",
     "pages/product-detail/product-detail",
-    "pages/reset-requests/reset-requests"
+    "pages/reset-requests/reset-requests",
+    "pages/product-edit/product-edit",
+    "pages/team-stats/team-stats"
   ],
   "window": {
     "backgroundTextStyle": "light",

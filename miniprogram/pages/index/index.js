@@ -1,6 +1,11 @@
+const { getRoleLabel, canWriteProducts, isManager } = require('../../utils/role');
+
 Page({
   data: {
     userInfo: null,
+    roleLabel: '',
+    canWrite: false,
+    isManager: false,
     resetCount: 0
   },
 
@@ -10,8 +15,13 @@ Page({
       wx.reLaunch({ url: '/pages/login/login' });
       return;
     }
-    this.setData({ userInfo });
-    if (userInfo.role === 'manager') {
+    this.setData({
+      userInfo,
+      roleLabel: getRoleLabel(userInfo.role),
+      canWrite: canWriteProducts(userInfo.role),
+      isManager: isManager(userInfo.role)
+    });
+    if (isManager(userInfo.role)) {
       this.loadResetCount();
     } else {
       this.setData({ resetCount: 0 });
@@ -34,6 +44,14 @@ Page({
 
   goSearch() {
     wx.navigateTo({ url: '/pages/product-search/product-search' });
+  },
+
+  goEdit() {
+    wx.navigateTo({ url: '/pages/product-search/product-search?mode=edit' });
+  },
+
+  goTeamStats() {
+    wx.navigateTo({ url: '/pages/team-stats/team-stats' });
   },
 
   goResetRequests() {

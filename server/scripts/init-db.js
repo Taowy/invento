@@ -21,7 +21,7 @@ async function main() {
       password_hash VARCHAR(255) NOT NULL,
       nick_name VARCHAR(64) NOT NULL,
       openid VARCHAR(64) DEFAULT NULL,
-      role ENUM('manager', 'service') NOT NULL DEFAULT 'service',
+      role ENUM('manager', 'recorder', 'service') NOT NULL DEFAULT 'service',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       INDEX idx_openid (openid)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -43,6 +43,18 @@ async function main() {
   `);
 
   await conn.query(`
+    CREATE TABLE IF NOT EXISTS user_activity_logs (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      action ENUM('query', 'create', 'update') NOT NULL,
+      product_id INT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+      INDEX idx_user_action_time (user_id, action, created_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `);
+
+  await conn.query(`
     CREATE TABLE IF NOT EXISTS products (
       id INT AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(128) NOT NULL,
@@ -53,11 +65,13 @@ async function main() {
       images JSON,
       image_keys JSON COMMENT 'OSS object key，用于识图索引',
       created_by INT,
+      updated_by INT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       FULLTEXT INDEX ft_name (name),
       INDEX idx_created_at (created_at),
-      FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+      FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
+      FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   `);
 

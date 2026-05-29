@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const { canWriteProducts, isManager } = require('../utils/roles');
 
 function signToken(payload) {
   return jwt.sign(payload, config.jwtSecret, { expiresIn: '30d' });
@@ -24,10 +25,23 @@ function authRequired(req, res, next) {
 }
 
 function managerRequired(req, res, next) {
-  if (req.user.role !== 'manager') {
+  if (!isManager(req.user.role)) {
     return res.status(403).json({ success: false, message: '仅管理者可操作' });
   }
   next();
 }
 
-module.exports = { signToken, verifyToken, authRequired, managerRequired };
+function recorderOrManagerRequired(req, res, next) {
+  if (!canWriteProducts(req.user.role)) {
+    return res.status(403).json({ success: false, message: '仅录入员或管理者可操作' });
+  }
+  next();
+}
+
+module.exports = {
+  signToken,
+  verifyToken,
+  authRequired,
+  managerRequired,
+  recorderOrManagerRequired
+};

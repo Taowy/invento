@@ -3,9 +3,9 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { getPool } = require('../db');
-const { authRequired, managerRequired } = require('../middleware/auth');
+const { authRequired, recorderOrManagerRequired } = require('../middleware/auth');
 const { saveImage, mapProductImages } = require('../storage');
-const config = require('../config');
+const { logActivity } = require('../utils/activity');
 
 const router = express.Router();
 
@@ -24,7 +24,23 @@ function ensureTmpDir() {
   if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
 }
 
-router.post('/upload', authRequired, managerRequired, (req, res) => {
+function mapListItem(req, item) {
+  const mapped = mapProductImages(req, item);
+  return {
+    id: mapped.id,
+    name: mapped.name,
+    price: mapped.price,
+    spec: mapped.spec,
+    stock: mapped.stock,
+    remark: mapped.remark,
+    images: mapped.images,
+    creatorName: item.creator_name,
+    createdAt: item.created_at,
+    updatedAt: item.updated_at
+  };
+}
+
+router.post('/upload', authRequired, recorderOrManagerRequired, (req, res) => {
   ensureTmpDir();
   upload.single('file')(req, res, async (err) => {
     if (err) {
@@ -72,22 +88,9 @@ router.get('/', authRequired, async (req, res) => {
       );
     }
 
-    const list = rows.map((item) => {
-      const mapped = mapProductImages(req, item);
-      return {
-        id: mapped.id,
-        name: mapped.name,
-        price: mapped.price,
-        spec: mapped.spec,
-        stock: mapped.stock,
-        remark: mapped.remark,
-        images: mapped.images,
-        creatorName: item.creator_name,
-        createdAt: item.created_at,
-        updatedAt: item.updated_at
-      };
-    });
+    await logActivity(pool, req.user.id, 'query');
 
+    const list = rows.map((item) => mapListItem(req, item));
     res.json({ success: true, list });
   } catch (err) {
     console.error(err);
@@ -108,6 +111,9 @@ router.get('/:id', authRequired, async (req, res) => {
     if (rows.length === 0) {
       return res.status(404).json({ success: false, message: '货物不存在' });
     }
+
+    await logActivity(pool, req.user.id, 'query', Number(req.params.id));
+
     const mapped = mapProductImages(req, rows[0]);
     res.json({
       success: true,
@@ -119,6 +125,7 @@ router.get('/:id', authRequired, async (req, res) => {
         stock: mapped.stock,
         remark: mapped.remark,
         images: mapped.images,
+        imageKeys: mapped.imageKeys,
         creatorName: rows[0].creator_name,
         createdAt: rows[0].created_at,
         updatedAt: rows[0].updated_at
@@ -129,7 +136,7 @@ router.get('/:id', authRequired, async (req, res) => {
   }
 });
 
-router.post('/', authRequired, managerRequired, async (req, res) => {
+router.post('/', authRequired, recorderOrManagerRequired, async (req, res) => {
   try {
     const { name, price, spec, stock, remark, images, imageKeys } = req.body;
 
@@ -142,8 +149,8 @@ router.post('/', authRequired, managerRequired, async (req, res) => {
 
     const pool = getPool();
     const [result] = await pool.query(
-      `INSERT INTO products (name, price, spec, stock, remark, images, image_keys, created_by)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO products (name, price, spec, stock, remark, images, image_keys, created_by, updated_by)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         String(name).trim(),
         parseFloat(price) || 0,
@@ -152,14 +159,60 @@ router.post('/', authRequired, managerRequired, async (req, res) => {
         remark || '',
         JSON.stringify(images || []),
         JSON.stringify(imageKeys || []),
+        req.user.id,
         req.user.id
       ]
     );
+
+    await logActivity(pool, req.user.id, 'create', result.insertId);
 
     res.json({ success: true, id: result.insertId });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: '保存失败' });
+  }
+});
+
+router.put('/:id', authRequired, recorderOrManagerRequired, async (req, res) => {
+  try {
+    const { name, price, spec, stock, remark, images, imageKeys } = req.body;
+
+    if (!name || !String(name).trim()) {
+      return res.status(400).json({ success: false, message: '请填写货物名称' });
+    }
+    if (price === undefined || price === null || price === '') {
+      return res.status(400).json({ success: false, message: '请填写价格' });
+    }
+
+    const pool = getPool();
+    const [existing] = await pool.query('SELECT id FROM products WHERE id = ?', [req.params.id]);
+    if (existing.length === 0) {
+      return res.status(404).json({ success: false, message: '货物不存在' });
+    }
+
+    await pool.query(
+      `UPDATE products
+       SET name = ?, price = ?, spec = ?, stock = ?, remark = ?, images = ?, image_keys = ?, updated_by = ?
+       WHERE id = ?`,
+      [
+        String(name).trim(),
+        parseFloat(price) || 0,
+        spec || '',
+        parseInt(stock, 10) || 0,
+        remark || '',
+        JSON.stringify(images || []),
+        JSON.stringify(imageKeys || []),
+        req.user.id,
+        req.params.id
+      ]
+    );
+
+    await logActivity(pool, req.user.id, 'update', Number(req.params.id));
+
+    res.json({ success: true, id: Number(req.params.id) });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: '更新失败' });
   }
 });
 

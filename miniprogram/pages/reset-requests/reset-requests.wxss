@@ -1,76 +1,86 @@
-.intro-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 12rpx;
+.reset-page {
+  padding-top: 16rpx;
 }
 
-.intro-desc {
-  font-size: 24rpx;
-  color: #888;
-  line-height: 1.6;
+.reset-hero {
+  padding: 8rpx 8rpx 40rpx;
 }
 
-.request-item {
-  border: 2rpx solid transparent;
+.reset-title {
+  font-size: 48rpx;
 }
 
-.request-item.selected {
-  border-color: #1677ff;
-  background: #f0f7ff;
+.request-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 32rpx 36rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.06);
 }
 
-.request-header {
+.request-card.selected {
+  border-color: #0071e3;
+  background: rgba(0, 113, 227, 0.04);
+}
+
+.request-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 12rpx;
 }
 
 .request-name {
+  display: block;
   font-size: 30rpx;
-  font-weight: 500;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 4rpx;
 }
 
-.role-tag {
-  padding: 6rpx 16rpx;
-  border-radius: 999rpx;
-  font-size: 22rpx;
-}
-
-.role-tag.manager {
-  background: #fff7e6;
-  color: #d48806;
-}
-
-.role-tag.recorder {
-  background: #f6ffed;
-  color: #389e0d;
-}
-
-.role-tag.service {
-  background: #e6f4ff;
-  color: #1677ff;
+.request-user {
+  display: block;
+  font-size: 24rpx;
+  color: #86868b;
 }
 
 .request-time {
   font-size: 24rpx;
-  color: #999;
+  color: #86868b;
 }
 
-.form-title {
-  font-size: 30rpx;
+.form-card {
+  padding: 40rpx 36rpx;
+  margin-top: 24rpx;
+}
+
+.form-heading {
+  display: block;
+  font-size: 34rpx;
   font-weight: 600;
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
 }
 
 .submit-btn {
-  margin-top: 32rpx;
+  width: 100%;
+  margin-top: 8rpx;
 }
 
-.form-label {
-  margin-top: 16rpx;
+.empty-state {
+  text-align: center;
+  padding: 80rpx 40rpx;
 }
 
-.form-label:first-of-type {
-  margin-top: 0;
+.empty-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 12rpx;
+}
+
+.empty-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #86868b;
 }

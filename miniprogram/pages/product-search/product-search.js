@@ -15,7 +15,7 @@ Page({
     const editMode = options.mode === 'edit';
     this.setData({ editMode });
     if (editMode) {
-      wx.setNavigationBarTitle({ title: '选择要修改的货物' });
+      wx.setNavigationBarTitle({ title: '修改' });
     }
   },
 

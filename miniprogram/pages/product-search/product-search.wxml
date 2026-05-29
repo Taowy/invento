@@ -1,31 +1,48 @@
-<view class="container">
-  <view class="search-bar card">
+<view class="page search-page">
+  <view class="search-hero">
+    <text class="text-title search-title">{{editMode ? '修改货物' : '查询货物'}}</text>
+    <text class="text-subtitle" wx:if="{{editMode}}">搜索并选择要编辑的项目</text>
+  </view>
+
+  <view class="search-pill">
+    <text class="search-icon">⌕</text>
     <input
       class="search-input"
-      placeholder="输入货物名称搜索..."
+      placeholder="搜索货物名称..."
+      placeholder-class="search-placeholder"
       value="{{keyword}}"
       bindinput="onKeywordInput"
       confirm-type="search"
       bindconfirm="doSearch"
     />
-    <button class="search-btn btn-primary" size="mini" bindtap="doSearch">搜索</button>
   </view>
 
-  <view class="result-count" wx:if="{{searched}}">共 {{list.length}} 条结果</view>
-  <view class="edit-hint" wx:if="{{editMode && searched}}">点击货物进入修改页面</view>
+  <view class="result-meta" wx:if="{{searched}}">
+    <text class="result-count">{{list.length}} 个结果</text>
+  </view>
 
-  <view wx:if="{{list.length === 0 && searched}}" class="empty-tip">Invento 中还没有这类货物</view>
+  <view wx:if="{{list.length === 0 && searched}}" class="empty-state">
+    <text class="empty-icon">⌕</text>
+    <text class="empty-title">未找到货物</text>
+    <text class="empty-desc">试试其他关键词，或检查拼写</text>
+  </view>
 
   <view class="product-list">
-    <view class="product-card card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
-      <image wx:if="{{item.images[0]}}" class="thumb" src="{{item.images[0]}}" mode="aspectFill" />
-      <view wx:else class="thumb thumb-empty">无图</view>
-      <view class="info">
-        <view class="name">{{item.name}}</view>
-        <view class="price">¥ {{item.price}}</view>
-        <view class="meta" wx:if="{{item.spec}}">{{item.spec}}</view>
-        <view class="meta">库存：{{item.stock}}</view>
+    <view class="product-row" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}" hover-class="product-row-hover">
+      <image wx:if="{{item.images[0]}}" class="product-thumb" src="{{item.images[0]}}" mode="aspectFill" />
+      <view wx:else class="product-thumb product-thumb-empty">
+        <text>—</text>
       </view>
+      <view class="product-body">
+        <text class="product-name">{{item.name}}</text>
+        <text class="product-price">¥{{item.price}}</text>
+        <view class="product-meta">
+          <text wx:if="{{item.spec}}">{{item.spec}}</text>
+          <text class="meta-dot" wx:if="{{item.spec}}">·</text>
+          <text>库存 {{item.stock}}</text>
+        </view>
+      </view>
+      <text class="list-row-chevron">›</text>
     </view>
   </view>
 </view>

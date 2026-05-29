@@ -1,104 +1,125 @@
-<view class="container login-page">
-  <view class="hero card" wx:if="{{!checkingSession}}">
-    <view class="logo">Invento</view>
-    <view class="title">库存管理系统</view>
-    <view class="subtitle">管理者录入 · 客服查询 · 井井有条</view>
+<view class="page login-page">
+  <!-- Loading -->
+  <view class="state-center" wx:if="{{checkingSession}}">
+    <view class="spinner"></view>
+    <text class="state-text">正在恢复登录状态</text>
   </view>
 
-  <view class="card server-info" wx:if="{{!checkingSession}}">
-    <view class="hint">当前后端：{{serverUrl}}</view>
-    <view class="hint warn">开发阶段请在开发者工具勾选「不校验合法域名」</view>
-  </view>
-
-  <view class="card loading-card" wx:if="{{checkingSession}}">
-    <view class="loading-text">正在恢复登录状态...</view>
-  </view>
-
-  <!-- 登录 -->
-  <view class="card" wx:if="{{!checkingSession && mode === 'login'}}">
-    <view class="tab-row">
-      <view class="tab active">登录</view>
-      <view class="tab" bindtap="switchMode" data-mode="register">注册</view>
+  <block wx:if="{{!checkingSession}}">
+    <!-- Hero -->
+    <view class="login-hero">
+      <text class="brand">Invento</text>
+      <text class="text-title login-title">库存管理</text>
+      <text class="text-subtitle">简洁、高效、井井有条</text>
     </view>
 
-    <text class="form-label">用户名</text>
-    <input class="form-input" placeholder="登录用户名" value="{{username}}" bindinput="onUsernameInput" />
+    <!-- Login -->
+    <view wx:if="{{mode === 'login'}}">
+      <view class="segment">
+        <view class="segment-item active">登录</view>
+        <view class="segment-item" bindtap="switchMode" data-mode="register">注册</view>
+      </view>
 
-    <text class="form-label">密码</text>
-    <input class="form-input" password placeholder="登录密码" value="{{password}}" bindinput="onPasswordInput" />
-
-    <view class="forgot-link" bindtap="switchMode" data-mode="forgot">忘记密码？联系管理员重置</view>
-
-    <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleLogin">
-      登录
-    </button>
-  </view>
-
-  <!-- 注册 -->
-  <view class="card" wx:if="{{!checkingSession && mode === 'register'}}">
-    <view class="tab-row">
-      <view class="tab" bindtap="switchMode" data-mode="login">登录</view>
-      <view class="tab active">注册</view>
+      <view class="card form-card">
+        <view class="form-group">
+          <text class="form-label">用户名</text>
+          <input class="form-input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">密码</text>
+          <input class="form-input" password placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+        <view class="forgot-row">
+          <text class="link" bindtap="switchMode" data-mode="forgot">忘记密码？</text>
+        </view>
+        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleLogin">登录</button>
+      </view>
     </view>
 
-    <text class="form-label">用户名</text>
-    <input class="form-input" placeholder="3-32 位字母、数字或下划线" value="{{username}}" bindinput="onUsernameInput" />
+    <!-- Register -->
+    <view wx:if="{{mode === 'register'}}">
+      <view class="segment">
+        <view class="segment-item" bindtap="switchMode" data-mode="login">登录</view>
+        <view class="segment-item active">注册</view>
+      </view>
 
-    <text class="form-label">密码</text>
-    <input class="form-input" password placeholder="至少 6 位" value="{{password}}" bindinput="onPasswordInput" />
-
-    <text class="form-label">确认密码</text>
-    <input class="form-input" password placeholder="再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
-
-    <text class="form-label">显示昵称（可选）</text>
-    <input class="form-input" placeholder="默认同用户名" value="{{nickName}}" bindinput="onNickNameInput" />
-
-    <text class="form-label">选择角色</text>
-    <radio-group class="role-group" bindchange="onRoleChange">
-      <label class="role-item">
-        <radio value="service" checked="{{role === 'service'}}" color="#1677ff" />
-        <view>
-          <view class="role-name">客服</view>
-          <view class="role-desc">仅查询货物信息</view>
+      <view class="card form-card">
+        <text class="form-label role-section-label">选择角色</text>
+        <view class="role-picker">
+          <view
+            class="role-tile {{role === 'service' ? 'selected' : ''}}"
+            bindtap="selectRole"
+            data-role="service"
+          >
+            <view class="role-avatar-wrap">
+              <image class="role-avatar" src="{{roleImages.service}}" mode="aspectFill" />
+            </view>
+            <text class="role-tile-name">客服</text>
+          </view>
+          <view
+            class="role-tile {{role === 'recorder' ? 'selected' : ''}}"
+            bindtap="selectRole"
+            data-role="recorder"
+          >
+            <view class="role-avatar-wrap">
+              <image class="role-avatar" src="{{roleImages.recorder}}" mode="aspectFill" />
+            </view>
+            <text class="role-tile-name">录入员</text>
+          </view>
+          <view
+            class="role-tile {{role === 'manager' ? 'selected' : ''}}"
+            bindtap="selectRole"
+            data-role="manager"
+          >
+            <view class="role-avatar-wrap">
+              <image class="role-avatar" src="{{roleImages.manager}}" mode="aspectFill" />
+            </view>
+            <text class="role-tile-name">管理者</text>
+          </view>
         </view>
-      </label>
-      <label class="role-item">
-        <radio value="recorder" checked="{{role === 'recorder'}}" color="#1677ff" />
-        <view>
-          <view class="role-name">录入员</view>
-          <view class="role-desc">查询、录入、修改货物</view>
-        </view>
-      </label>
-      <label class="role-item">
-        <radio value="manager" checked="{{role === 'manager'}}" color="#1677ff" />
-        <view>
-          <view class="role-name">管理者</view>
-          <view class="role-desc">录入员权限 + 密码重置 + 团队统计</view>
-        </view>
-      </label>
-    </radio-group>
 
-    <view wx:if="{{role === 'manager'}}">
-      <text class="form-label">管理者验证码</text>
-      <input class="form-input" password placeholder="向管理员索取验证码" value="{{managerCode}}" bindinput="onManagerCodeInput" />
+        <view class="form-group">
+          <text class="form-label">用户名</text>
+          <input class="form-input" placeholder="3-32 位字母、数字或下划线" value="{{username}}" bindinput="onUsernameInput" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">密码</text>
+          <input class="form-input" password placeholder="至少 6 位" value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">确认密码</text>
+          <input class="form-input" password placeholder="再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">显示昵称（可选）</text>
+          <input class="form-input" placeholder="默认同用户名" value="{{nickName}}" bindinput="onNickNameInput" />
+        </view>
+
+        <view class="form-group" wx:if="{{role === 'manager'}}">
+          <text class="form-label">管理者验证码</text>
+          <input class="form-input" password placeholder="向管理员索取" value="{{managerCode}}" bindinput="onManagerCodeInput" />
+        </view>
+
+        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleRegister">注册并登录</button>
+      </view>
     </view>
 
-    <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleRegister">
-      注册并登录
-    </button>
-  </view>
+    <!-- Forgot -->
+    <view wx:if="{{mode === 'forgot'}}">
+      <view class="card form-card">
+        <text class="form-heading">忘记密码</text>
+        <text class="text-subtitle forgot-desc">提交申请后，管理者将收到通知并为您重置密码。</text>
+        <view class="form-group">
+          <text class="form-label">用户名</text>
+          <input class="form-input" placeholder="您的登录用户名" value="{{forgotUsername}}" bindinput="onForgotUsernameInput" />
+        </view>
+        <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleForgotPassword">提交申请</button>
+        <button class="btn-secondary back-btn" bindtap="switchMode" data-mode="login">返回登录</button>
+      </view>
+    </view>
 
-  <!-- 忘记密码 -->
-  <view class="card" wx:if="{{!checkingSession && mode === 'forgot'}}">
-    <view class="section-title">忘记密码</view>
-    <view class="hint">提交申请后，管理者会在首页收到提醒并为您重置密码。</view>
-
-    <text class="form-label">用户名</text>
-    <input class="form-input" placeholder="您的登录用户名" value="{{forgotUsername}}" bindinput="onForgotUsernameInput" />
-
-    <button class="btn-primary submit-btn" loading="{{loading}}" disabled="{{loading}}" bindtap="handleForgotPassword">
-      提交重置申请
-    </button>
-    <button class="btn-secondary back-btn" bindtap="switchMode" data-mode="login">返回登录</button>
-  </view>
+    <view class="dev-hint" wx:if="{{mode !== 'forgot'}}">
+      <text class="dev-hint-text">{{serverUrl}}</text>
+    </view>
+  </block>
 </view>

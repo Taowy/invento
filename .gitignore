@@ -7,3 +7,6 @@ node_modules/
 server/uploads/
 server/tmp/
 *.log
+
+# 角色插图：JPG 压缩版纳入仓库供 ECS 上传 OSS；原始 PNG 勿提交
+miniprogram/assets/roles/*.png

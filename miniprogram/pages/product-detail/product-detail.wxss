@@ -1,54 +1,92 @@
-.banner {
-  width: 100%;
-  height: 500rpx;
-  border-radius: 16rpx;
-  overflow: hidden;
-  margin-bottom: 24rpx;
+.detail-page {
+  padding: 0;
+  min-height: 100vh;
 }
 
-.banner image {
+.hero-gallery {
+  width: 100%;
+  height: 560rpx;
+  background: #f5f5f7;
+}
+
+.hero-image {
   width: 100%;
   height: 100%;
 }
 
-.banner-empty {
-  background: #f0f0f0;
+.hero-empty {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #bbb;
 }
 
-.name {
-  font-size: 40rpx;
+.hero-empty-text {
+  font-size: 28rpx;
+  color: #86868b;
+}
+
+.detail-content {
+  padding: 48rpx 40rpx 64rpx;
+  margin-top: -32rpx;
+  background: #fbfbfd;
+  border-radius: 32rpx 32rpx 0 0;
+  position: relative;
+}
+
+.detail-name {
+  display: block;
+  font-size: 44rpx;
   font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #1d1d1f;
   margin-bottom: 16rpx;
 }
 
-.price {
-  color: #f5222d;
-  font-size: 44rpx;
+.detail-price {
+  display: block;
+  font-size: 36rpx;
   font-weight: 600;
-  margin-bottom: 32rpx;
+  color: #1d1d1f;
+  margin-bottom: 40rpx;
 }
 
-.row {
+/* Apple spec sheet style */
+.spec-sheet {
+  background: #ffffff;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 40rpx;
+}
+
+.spec-row {
   display: flex;
-  padding: 16rpx 0;
-  border-top: 1rpx solid #f0f0f0;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.06);
 }
 
-.label {
-  width: 120rpx;
-  color: #888;
+.spec-row-last {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-size: 28rpx;
+  color: #86868b;
   flex-shrink: 0;
+  width: 140rpx;
 }
 
-.value {
+.spec-value {
+  font-size: 28rpx;
+  color: #1d1d1f;
+  text-align: right;
   flex: 1;
   word-break: break-all;
 }
 
 .edit-btn {
-  margin-top: 24rpx;
+  width: 100%;
 }

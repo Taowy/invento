@@ -1,69 +1,325 @@
+@import './styles/dark.wxss';
+
+/* Invento Design System — Apple-inspired, commercial-grade */
+
 page {
-  background-color: #f5f6f8;
-  color: #1f1f1f;
+  background-color: #fbfbfd;
+  color: #1d1d1f;
   font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  line-height: 1.47059;
+  letter-spacing: -0.022em;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container,
+.page {
+  min-height: 100vh;
+  padding: 0 40rpx 64rpx;
   box-sizing: border-box;
 }
 
-.container {
-  padding: 24rpx;
+/* —— Typography —— */
+.text-eyebrow {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin-bottom: 12rpx;
 }
 
+.text-title {
+  display: block;
+  font-size: 56rpx;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: #1d1d1f;
+}
+
+.text-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #86868b;
+  line-height: 1.5;
+  margin-top: 12rpx;
+}
+
+.text-section {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #86868b;
+  margin: 48rpx 0 20rpx 8rpx;
+}
+
+/* —— Surfaces —— */
 .card {
-  background: #fff;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-flat {
+  background: #ffffff;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.card-inset {
+  background: #f5f5f7;
   border-radius: 16rpx;
-  padding: 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+  padding: 28rpx 32rpx;
+  border: none;
+  box-shadow: none;
+}
+
+/* —— Buttons —— */
+/* 微信小程序 button 自带 padding 和 ::after 边框，line-height 无法可靠居中 */
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  line-height: 1.2;
+  overflow: visible;
+}
+
+button::after {
+  border: none;
 }
 
 .btn-primary {
-  background: #1677ff;
-  color: #fff;
-  border-radius: 12rpx;
+  background: #0071e3;
+  color: #ffffff;
+  border-radius: 980rpx;
   font-size: 30rpx;
+  font-weight: 500;
+  height: 88rpx;
+  min-height: 88rpx;
+  border: none;
+  letter-spacing: -0.01em;
 }
 
 .btn-primary[disabled] {
-  background: #91caff;
-  color: #fff;
+  background: #99caff;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .btn-secondary {
-  background: #fff;
-  color: #1677ff;
-  border: 2rpx solid #1677ff;
-  border-radius: 12rpx;
+  background: transparent;
+  color: #0071e3;
+  border: 2rpx solid rgba(0, 113, 227, 0.35);
+  border-radius: 980rpx;
   font-size: 30rpx;
+  font-weight: 500;
+  height: 88rpx;
+  min-height: 88rpx;
+}
+
+.btn-ghost {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  border-radius: 980rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  height: 80rpx;
+  min-height: 80rpx;
+  border: none;
+}
+
+/* —— Forms —— */
+.form-group {
+  margin-bottom: 28rpx;
 }
 
 .form-label {
   display: block;
-  font-size: 26rpx;
-  color: #666;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #86868b;
   margin-bottom: 12rpx;
+  letter-spacing: 0.02em;
 }
 
 .form-input {
   width: 100%;
-  height: 80rpx;
-  padding: 0 24rpx;
-  background: #f5f6f8;
-  border-radius: 12rpx;
+  height: 88rpx;
+  padding: 0 28rpx;
+  background: #f5f5f7;
+  border-radius: 14rpx;
   box-sizing: border-box;
+  font-size: 30rpx;
+  color: #1d1d1f;
+  border: 1rpx solid transparent;
 }
 
 .form-textarea {
   width: 100%;
-  min-height: 160rpx;
-  padding: 20rpx 24rpx;
-  background: #f5f6f8;
-  border-radius: 12rpx;
+  min-height: 180rpx;
+  padding: 24rpx 28rpx;
+  background: #f5f5f7;
+  border-radius: 14rpx;
   box-sizing: border-box;
+  font-size: 30rpx;
+  color: #1d1d1f;
+  line-height: 1.5;
 }
 
+/* —— Segmented control —— */
+.segment {
+  display: flex;
+  background: #e8e8ed;
+  border-radius: 980rpx;
+  padding: 6rpx;
+  margin-bottom: 40rpx;
+}
+
+.segment-item {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  border-radius: 980rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #86868b;
+  transition: all 0.2s ease;
+}
+
+.segment-item.active {
+  background: #ffffff;
+  color: #1d1d1f;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+/* —— Role pills —— */
+.role-pill {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  border-radius: 980rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.role-pill.manager {
+  background: rgba(255, 149, 0, 0.12);
+  color: #bf4800;
+}
+
+.role-pill.recorder {
+  background: rgba(52, 199, 89, 0.12);
+  color: #248a3d;
+}
+
+.role-pill.service {
+  background: rgba(0, 113, 227, 0.1);
+  color: #0071e3;
+}
+
+.role-tag {
+  padding: 8rpx 20rpx;
+  border-radius: 980rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.role-tag.manager {
+  background: rgba(255, 149, 0, 0.12);
+  color: #bf4800;
+}
+
+.role-tag.recorder {
+  background: rgba(52, 199, 89, 0.12);
+  color: #248a3d;
+}
+
+.role-tag.service {
+  background: rgba(0, 113, 227, 0.1);
+  color: #0071e3;
+}
+
+/* —— List rows (iOS Settings style) —— */
+.list-row {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  background: #ffffff;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.06);
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}
+
+.list-row:active {
+  background: #f5f5f7;
+}
+
+.list-row-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 14rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.list-row-icon.blue { background: rgba(0, 113, 227, 0.12); color: #0071e3; }
+.list-row-icon.green { background: rgba(52, 199, 89, 0.12); color: #248a3d; }
+.list-row-icon.orange { background: rgba(255, 149, 0, 0.12); color: #bf4800; }
+.list-row-icon.purple { background: rgba(175, 82, 222, 0.12); color: #8944ab; }
+.list-row-icon.gray { background: #f5f5f7; color: #86868b; }
+
+.list-row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.list-row-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #1d1d1f;
+  margin-bottom: 4rpx;
+}
+
+.list-row-desc {
+  font-size: 24rpx;
+  color: #86868b;
+  line-height: 1.4;
+}
+
+.list-row-chevron {
+  color: #c7c7cc;
+  font-size: 36rpx;
+  font-weight: 300;
+  margin-left: 12rpx;
+}
+
+/* —— Empty state —— */
 .empty-tip {
   text-align: center;
-  color: #999;
-  padding: 80rpx 0;
+  color: #86868b;
+  font-size: 28rpx;
+  padding: 96rpx 40rpx;
+  line-height: 1.5;
+}
+
+/* —— Link —— */
+.link {
+  color: #0071e3;
+  font-size: 26rpx;
 }

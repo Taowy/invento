@@ -9,11 +9,14 @@
     "pages/product-edit/product-edit",
     "pages/team-stats/team-stats"
   ],
+  "darkmode": true,
+  "themeLocation": "theme.json",
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#1677ff",
+    "backgroundTextStyle": "@bgTxtStyle",
+    "navigationBarBackgroundColor": "@navBgColor",
     "navigationBarTitleText": "Invento",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "@navTxtStyle",
+    "backgroundColor": "@pageBgColor"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

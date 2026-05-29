@@ -14,5 +14,12 @@ module.exports = {
   get baseUrl() {
     // if (this.useDomain) return this.domain;
     return `http://${this.ecsPublicIp}:${this.port}`;
+  },
+
+  /** 角色插图 OSS 地址（运行 server/scripts/upload-role-assets.js 上传后生效） */
+  roleImages: {
+    service: 'https://invento-photo.cn-hangzhou.taihangtop.cn/invento/static/roles/role-service.jpg',
+    recorder: 'https://invento-photo.cn-hangzhou.taihangtop.cn/invento/static/roles/role-recorder.jpg',
+    manager: 'https://invento-photo.cn-hangzhou.taihangtop.cn/invento/static/roles/role-manager.jpg'
   }
 };

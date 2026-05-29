@@ -1,73 +1,97 @@
-.intro-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 12rpx;
+.stats-page {
+  padding-top: 16rpx;
 }
 
-.intro-desc {
-  font-size: 24rpx;
-  color: #888;
-  line-height: 1.6;
+.stats-hero {
+  padding: 8rpx 8rpx 40rpx;
 }
 
-.stat-item {
-  padding-bottom: 24rpx;
+.stats-title {
+  font-size: 48rpx;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.04);
 }
 
 .stat-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 20rpx;
+  margin-bottom: 32rpx;
 }
 
 .stat-name {
-  font-size: 30rpx;
-  font-weight: 500;
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+  margin-bottom: 4rpx;
 }
 
-.role-tag {
-  padding: 6rpx 16rpx;
-  border-radius: 999rpx;
-  font-size: 22rpx;
+.stat-username {
+  display: block;
+  font-size: 24rpx;
+  color: #86868b;
 }
 
-.role-tag.manager {
-  background: #fff7e6;
-  color: #d48806;
-}
-
-.role-tag.recorder {
-  background: #f6ffed;
-  color: #389e0d;
-}
-
-.role-tag.service {
-  background: #e6f4ff;
-  color: #1677ff;
-}
-
-.stat-grid {
+.stat-metrics {
   display: flex;
-  gap: 16rpx;
+  align-items: center;
+  background: #f5f5f7;
+  border-radius: 16rpx;
+  padding: 28rpx 0;
 }
 
-.stat-cell {
+.metric {
   flex: 1;
-  background: #f5f6f8;
-  border-radius: 12rpx;
-  padding: 20rpx 0;
   text-align: center;
 }
 
-.stat-num {
-  font-size: 36rpx;
+.metric-value {
+  display: block;
+  font-size: 40rpx;
   font-weight: 600;
-  color: #1677ff;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
   margin-bottom: 8rpx;
 }
 
-.stat-label {
-  font-size: 24rpx;
-  color: #888;
+.metric-label {
+  display: block;
+  font-size: 22rpx;
+  color: #86868b;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.metric-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 96rpx 40rpx;
+}
+
+.empty-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 12rpx;
+}
+
+.empty-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #86868b;
 }

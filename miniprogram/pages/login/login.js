@@ -14,7 +14,8 @@ Page({
     nickName: '',
     role: 'service',
     managerCode: '',
-    forgotUsername: ''
+    forgotUsername: '',
+    roleImages: appConfig.roleImages
   },
 
   onLoad() {
@@ -52,8 +53,8 @@ Page({
   onNickNameInput(e) { this.setData({ nickName: e.detail.value.trim() }); },
   onForgotUsernameInput(e) { this.setData({ forgotUsername: e.detail.value.trim() }); },
 
-  onRoleChange(e) {
-    this.setData({ role: e.detail.value });
+  selectRole(e) {
+    this.setData({ role: e.currentTarget.dataset.role });
   },
 
   onManagerCodeInput(e) {

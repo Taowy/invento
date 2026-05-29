@@ -1,28 +1,37 @@
-<view class="container">
-  <view class="card intro">
-    <view class="intro-title">团队操作统计</view>
-    <view class="intro-desc">近 30 天内，客服与录入员的查询、录入、修改次数。</view>
+<view class="page stats-page">
+  <view class="stats-hero">
+    <text class="text-eyebrow">Analytics</text>
+    <text class="text-title stats-title">团队统计</text>
+    <text class="text-subtitle">近 30 天操作数据</text>
   </view>
 
-  <view class="empty-tip" wx:if="{{!loading && list.length === 0}}">暂无客服或录入员数据</view>
+  <view class="empty-state" wx:if="{{!loading && list.length === 0}}">
+    <text class="empty-title">暂无数据</text>
+    <text class="empty-desc">客服与录入员的操作记录将显示在此</text>
+  </view>
 
-  <view class="card stat-item" wx:for="{{list}}" wx:key="id">
+  <view class="stat-card" wx:for="{{list}}" wx:key="id">
     <view class="stat-header">
-      <view class="stat-name">{{item.nickName}}（{{item.username}}）</view>
-      <view class="role-tag {{item.role}}">{{item.roleLabel}}</view>
+      <view class="stat-user">
+        <text class="stat-name">{{item.nickName}}</text>
+        <text class="stat-username">@{{item.username}}</text>
+      </view>
+      <view class="role-pill {{item.role}}">{{item.roleLabel}}</view>
     </view>
-    <view class="stat-grid">
-      <view class="stat-cell">
-        <view class="stat-num">{{item.queryCount}}</view>
-        <view class="stat-label">查询</view>
+    <view class="stat-metrics">
+      <view class="metric">
+        <text class="metric-value">{{item.queryCount}}</text>
+        <text class="metric-label">查询</text>
       </view>
-      <view class="stat-cell">
-        <view class="stat-num">{{item.createCount}}</view>
-        <view class="stat-label">录入</view>
+      <view class="metric-divider"></view>
+      <view class="metric">
+        <text class="metric-value">{{item.createCount}}</text>
+        <text class="metric-label">录入</text>
       </view>
-      <view class="stat-cell">
-        <view class="stat-num">{{item.updateCount}}</view>
-        <view class="stat-label">修改</view>
+      <view class="metric-divider"></view>
+      <view class="metric">
+        <text class="metric-value">{{item.updateCount}}</text>
+        <text class="metric-label">修改</text>
       </view>
     </view>
   </view>
